@@ -3,6 +3,8 @@
 express
 ejs
 express-ejs-layouts
+mongoose
+body-parser
 ## npm install --save-dev
 nodemon
 dotenv
@@ -13,7 +15,12 @@ nodemon server.js
 ejs language support extension to get ejs syntax highlighting 
 
 ## apt get 
-mongoose
 mongod
 node
 heroku
+
+## Git
+git push heroku main
+
+## i3
+i3-msg move workspace to output left

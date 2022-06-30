@@ -1,4 +1,4 @@
-// This file is our controller, it handles the routing for our app
+// This file is our controller, it handles the routing for our index.ejs
 const express = require('express')
 const router = express.Router()
 

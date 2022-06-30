@@ -8,9 +8,11 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 
 // This utilizes our routing system which is configured in routes/index.js. 
 const indexRouter = require('./routes/index')
+const authorRouter = require('./routes/authors')
 
 // This renders ejs files to dynamic html
 app.set('view engine', 'ejs')
@@ -21,8 +23,8 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 // this is the module that renders ejs files to html through express
 app.use(expressLayouts)
-
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 
 // This is our database and we access it through DATABASE_URL which lies in .env
 const mongoose = require('mongoose')
@@ -35,6 +37,7 @@ db.on('error', error => cconsole.log(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
 
 // the dotenv module which we'll install will enable us to have a .env file where we store the variable PORT,
 // from there it can be changed easily depending on the system that runs the code.
